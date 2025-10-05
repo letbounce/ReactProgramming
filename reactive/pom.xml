@@ -38,6 +38,7 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-webflux</artifactId>
         </dependency>
+<<<<<<< HEAD
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
@@ -68,6 +69,8 @@
             <artifactId>r2dbc-postgresql</artifactId>
             <scope>runtime</scope>
         </dependency>
+=======
+>>>>>>> 4122fc677ca14eb0f406f7e5fcc4cb9f0488e336
 
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -84,11 +87,14 @@
             <artifactId>reactor-test</artifactId>
             <scope>test</scope>
         </dependency>
+<<<<<<< HEAD
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-test</artifactId>
             <scope>test</scope>
         </dependency>
+=======
+>>>>>>> 4122fc677ca14eb0f406f7e5fcc4cb9f0488e336
     </dependencies>
 
     <build>

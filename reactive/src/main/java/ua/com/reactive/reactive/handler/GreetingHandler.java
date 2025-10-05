@@ -8,16 +8,28 @@ import org.springframework.web.reactive.function.server.ServerResponse;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import ua.com.reactive.reactive.entity.Client;
+<<<<<<< HEAD
 import ua.com.reactive.reactive.entity.User;
+=======
+import ua.com.reactive.reactive.entity.Greeting;
+>>>>>>> 4122fc677ca14eb0f406f7e5fcc4cb9f0488e336
 
 @Component
 public class GreetingHandler {
 
     public Mono<ServerResponse> hello(ServerRequest request) {
+<<<<<<< HEAD
         return ServerResponse
                 .ok()
                 .contentType(MediaType.APPLICATION_JSON)
                 .body(BodyInserters.fromValue("Hello World!"));
+=======
+
+        return ServerResponse
+                .ok()
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(BodyInserters.fromValue(new Greeting("Hello, Spring")));
+>>>>>>> 4122fc677ca14eb0f406f7e5fcc4cb9f0488e336
     }
 
     public Mono<ServerResponse> home(ServerRequest request) {
@@ -54,6 +66,7 @@ public class GreetingHandler {
                 .body(clients, Client.class);
     }
 
+<<<<<<< HEAD
     public Mono<ServerResponse> users(ServerRequest request){
         return ServerResponse
                 .ok()
@@ -76,4 +89,6 @@ public class GreetingHandler {
                 .body(users, User.class);
     }
 
+=======
+>>>>>>> 4122fc677ca14eb0f406f7e5fcc4cb9f0488e336
 }
