@@ -1,38 +1,28 @@
 package ua.com.reactive.reactive.entity;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Column;
+import org.springframework.data.relational.core.mapping.Table;
+
+@Data
+@NoArgsConstructor
+@Table("drivers")
 public class Driver {
-    private final Long id;
-    private final String firstName;
-    private final String lastName;
-    private final String licenseNumber;
-    private final Long assignedCarId; // references Car.id
+    @Id
+    private Long id;
 
-    public Driver(Long id, String firstName, String lastName, String licenseNumber, Long assignedCarId) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.licenseNumber = licenseNumber;
-        this.assignedCarId = assignedCarId;
-    }
+    @Column("first_name")
+    private String firstName;
 
-    public Long getId() {
-        return id;
-    }
+    @Column("last_name")
+    private String lastName;
 
-    public String getFirstName() {
-        return firstName;
-    }
+    @Column("license_number")
+    private String licenseNumber;
 
-    public String getLastName() {
-        return lastName;
-    }
-
-    public String getLicenseNumber() {
-        return licenseNumber;
-    }
-
-    public Long getAssignedCarId() {
-        return assignedCarId;
-    }
+    @Column("assigned_car_id")
+    private Long assignedCarId; // references Car.id
 }
 

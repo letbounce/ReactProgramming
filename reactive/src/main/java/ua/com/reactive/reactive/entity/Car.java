@@ -1,51 +1,30 @@
 package ua.com.reactive.reactive.entity;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Column;
+import org.springframework.data.relational.core.mapping.Table;
+
+@Data
+@NoArgsConstructor
+@Table("cars")
 public class Car {
-    private final Long id;
-    private final String make;
-    private final String model;
-    private final String registrationNumber;
-    private final VehicleType vehicleType;
-    private final int capacityKg;
-    private final boolean serviceable; // true if the car is in working condition
+    @Id
+    private Long id;
 
-    public Car(Long id, String make, String model, String registrationNumber,
-               VehicleType vehicleType, int capacityKg, boolean serviceable) {
-        this.id = id;
-        this.make = make;
-        this.model = model;
-        this.registrationNumber = registrationNumber;
-        this.vehicleType = vehicleType;
-        this.capacityKg = capacityKg;
-        this.serviceable = serviceable;
-    }
+    private String make;
+    private String model;
 
-    public Long getId() {
-        return id;
-    }
+    @Column("registration_number")
+    private String registrationNumber;
 
-    public String getMake() {
-        return make;
-    }
+    @Column("vehicle_type")
+    private VehicleType vehicleType;
 
-    public String getModel() {
-        return model;
-    }
+    @Column("capacity_kg")
+    private int capacityKg;
 
-    public String getRegistrationNumber() {
-        return registrationNumber;
-    }
-
-    public VehicleType getVehicleType() {
-        return vehicleType;
-    }
-
-    public int getCapacityKg() {
-        return capacityKg;
-    }
-
-    public boolean isServiceable() {
-        return serviceable;
-    }
+    private boolean serviceable; // true if the car is in working condition
 }
 

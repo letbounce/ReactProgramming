@@ -1,47 +1,31 @@
 package ua.com.reactive.reactive.entity;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Column;
+import org.springframework.data.relational.core.mapping.Table;
+
 import java.time.LocalDateTime;
 
+@Data
+@NoArgsConstructor
+@Table("trip_requests")
 public class TripRequest {
-    private final Long id;
-    private final VehicleType requiredVehicleType;
-    private final int requiredCapacityKg;
-    private final String route; // simple description
-    private final LocalDateTime requestedAt;
-    private final RequestStatus status;
+    @Id
+    private Long id;
 
-    public TripRequest(Long id, VehicleType requiredVehicleType, int requiredCapacityKg,
-                       String route, LocalDateTime requestedAt, RequestStatus status) {
-        this.id = id;
-        this.requiredVehicleType = requiredVehicleType;
-        this.requiredCapacityKg = requiredCapacityKg;
-        this.route = route;
-        this.requestedAt = requestedAt;
-        this.status = status;
-    }
+    @Column("required_vehicle_type")
+    private VehicleType requiredVehicleType;
 
-    public Long getId() {
-        return id;
-    }
+    @Column("required_capacity_kg")
+    private int requiredCapacityKg;
 
-    public VehicleType getRequiredVehicleType() {
-        return requiredVehicleType;
-    }
+    private String route; // simple description
 
-    public int getRequiredCapacityKg() {
-        return requiredCapacityKg;
-    }
+    @Column("requested_at")
+    private LocalDateTime requestedAt;
 
-    public String getRoute() {
-        return route;
-    }
-
-    public LocalDateTime getRequestedAt() {
-        return requestedAt;
-    }
-
-    public RequestStatus getStatus() {
-        return status;
-    }
+    private RequestStatus status;
 }
 
