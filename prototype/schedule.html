@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Розклад руху транспорту - Міський транспорт</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <h1>Система управління міським транспортом</h1>
+                <p>Управління транспортом, маршрутами та водіями</p>
+            </div>
+            <nav class="nav">
+                <a href="index.html" class="nav-link">Головна</a>
+                <a href="vehicles.html" class="nav-link">Транспорт</a>
+                <a href="routes.html" class="nav-link">Маршрути</a>
+                <a href="drivers.html" class="nav-link">Водії</a>
+                <a href="schedule.html" class="nav-link active">Розклад</a>
+                <a href="analytics.html" class="nav-link">Аналітика</a>
+            </nav>
+            <div class="user-info">
+                <span>Диспетчер</span>
+                <button class="logout-btn">Вийти</button>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Schedule Controls -->
+            <div class="table-container">
+                <div class="table-header">
+                    <h3>Розклад руху транспорту</h3>
+                    <div class="search-box">
+                        <select class="form-select" style="width: 150px;">
+                            <option value="all">Всі події</option>
+                            <option value="route">Рейси</option>
+                            <option value="maintenance">ТО</option>
+                            <option value="repair">Ремонт</option>
+                        </select>
+                        <button class="btn btn-primary" onclick="openAddEventModal()">Додати подію</button>
+                        <button class="btn btn-success" onclick="exportSchedule()">Експорт розкладу</button>
+                    </div>
+                </div>
+                
+                <!-- Calendar View -->
+                <div style="padding: 1.5rem;">
+                    <div style="background: #f8f9fa; padding: 2rem; border-radius: 10px; margin-bottom: 2rem;">
+                        <h4 style="text-align: center; margin-bottom: 2rem;">Січень 2025</h4>
+                        <div style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 1px; background: #ddd;">
+                            <!-- Calendar headers -->
+                            <div style="background: #667eea; color: white; padding: 1rem; text-align: center; font-weight: bold;">Пн</div>
+                            <div style="background: #667eea; color: white; padding: 1rem; text-align: center; font-weight: bold;">Вт</div>
+                            <div style="background: #667eea; color: white; padding: 1rem; text-align: center; font-weight: bold;">Ср</div>
+                            <div style="background: #667eea; color: white; padding: 1rem; text-align: center; font-weight: bold;">Чт</div>
+                            <div style="background: #667eea; color: white; padding: 1rem; text-align: center; font-weight: bold;">Пт</div>
+                            <div style="background: #667eea; color: white; padding: 1rem; text-align: center; font-weight: bold;">Сб</div>
+                            <div style="background: #667eea; color: white; padding: 1rem; text-align: center; font-weight: bold;">Нд</div>
+                            
+                            <!-- Calendar days -->
+                            <div style="background: white; padding: 1rem; text-align: center; min-height: 80px; border: 1px solid #ddd;">1</div>
+                            <div style="background: white; padding: 1rem; text-align: center; min-height: 80px; border: 1px solid #ddd;">2</div>
+                            <div style="background: white; padding: 1rem; text-align: center; min-height: 80px; border: 1px solid #ddd;">3</div>
+                            <div style="background: white; padding: 1rem; text-align: center; min-height: 80px; border: 1px solid #ddd;">4</div>
+                            <div style="background: white; padding: 1rem; text-align: center; min-height: 80px; border: 1px solid #ddd;">5</div>
+                            <div style="background: white; padding: 1rem; text-align: center; min-height: 80px; border: 1px solid #ddd;">6</div>
+                            <div style="background: white; padding: 1rem; text-align: center; min-height: 80px; border: 1px solid #ddd;">7</div>
+                            
+                            <div style="background: white; padding: 1rem; text-align: center; min-height: 80px; border: 1px solid #ddd;">8</div>
+                            <div style="background: white; padding: 1rem; text-align: center; min-height: 80px; border: 1px solid #ddd;">9</div>
+                            <div style="background: white; padding: 1rem; text-align: center; min-height: 80px; border: 1px solid #ddd;">10</div>
+                            <div style="background: white; padding: 1rem; text-align: center; min-height: 80px; border: 1px solid #ddd;">11</div>
+                            <div style="background: white; padding: 1rem; text-align: center; min-height: 80px; border: 1px solid #ddd;">12</div>
+                            <div style="background: white; padding: 1rem; text-align: center; min-height: 80px; border: 1px solid #ddd;">13</div>
+                            <div style="background: white; padding: 1rem; text-align: center; min-height: 80px; border: 1px solid #ddd;">14</div>
+                            
+                            <div style="background: #e8f5e8; padding: 1rem; text-align: center; min-height: 80px; border: 1px solid #ddd; position: relative;">
+                                15
+                                <div style="position: absolute; bottom: 5px; left: 5px; right: 5px; background: #27ae60; color: white; padding: 2px; font-size: 0.7rem; border-radius: 3px;">ТО АК-1234 14:00</div>
+                            </div>
+                            <div style="background: white; padding: 1rem; text-align: center; min-height: 80px; border: 1px solid #ddd;">16</div>
+                            <div style="background: white; padding: 1rem; text-align: center; min-height: 80px; border: 1px solid #ddd;">17</div>
+                            <div style="background: #fff3cd; padding: 1rem; text-align: center; min-height: 80px; border: 1px solid #ddd; position: relative;">
+                                18
+                                <div style="position: absolute; bottom: 5px; left: 5px; right: 5px; background: #f39c12; color: white; padding: 2px; font-size: 0.7rem; border-radius: 3px;">Оновлення розкладу</div>
+                            </div>
+                            <div style="background: white; padding: 1rem; text-align: center; min-height: 80px; border: 1px solid #ddd;">19</div>
+                            <div style="background: white; padding: 1rem; text-align: center; min-height: 80px; border: 1px solid #ddd;">20</div>
+                            <div style="background: white; padding: 1rem; text-align: center; min-height: 80px; border: 1px solid #ddd;">21</div>
+                            
+                            <div style="background: #f8d7da; padding: 1rem; text-align: center; min-height: 80px; border: 1px solid #ddd; position: relative;">
+                                22
+                                <div style="position: absolute; bottom: 5px; left: 5px; right: 5px; background: #e74c3c; color: white; padding: 2px; font-size: 0.7rem; border-radius: 3px;">Закінчення дозволу</div>
+                            </div>
+                            <div style="background: white; padding: 1rem; text-align: center; min-height: 80px; border: 1px solid #ddd;">23</div>
+                            <div style="background: white; padding: 1rem; text-align: center; min-height: 80px; border: 1px solid #ddd;">24</div>
+                            <div style="background: white; padding: 1rem; text-align: center; min-height: 80px; border: 1px solid #ddd;">25</div>
+                            <div style="background: white; padding: 1rem; text-align: center; min-height: 80px; border: 1px solid #ddd;">26</div>
+                            <div style="background: white; padding: 1rem; text-align: center; min-height: 80px; border: 1px solid #ddd;">27</div>
+                            <div style="background: white; padding: 1rem; text-align: center; min-height: 80px; border: 1px solid #ddd;">28</div>
+                            
+                            <div style="background: white; padding: 1rem; text-align: center; min-height: 80px; border: 1px solid #ddd;">29</div>
+                            <div style="background: white; padding: 1rem; text-align: center; min-height: 80px; border: 1px solid #ddd;">30</div>
+                            <div style="background: white; padding: 1rem; text-align: center; min-height: 80px; border: 1px solid #ddd;">31</div>
+                            <div style="background: #f8f9fa; padding: 1rem; text-align: center; min-height: 80px; border: 1px solid #ddd;"></div>
+                            <div style="background: #f8f9fa; padding: 1rem; text-align: center; min-height: 80px; border: 1px solid #ddd;"></div>
+                            <div style="background: #f8f9fa; padding: 1rem; text-align: center; min-height: 80px; border: 1px solid #ddd;"></div>
+                            <div style="background: #f8f9fa; padding: 1rem; text-align: center; min-height: 80px; border: 1px solid #ddd;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Upcoming Events -->
+            <div class="table-container">
+                <div class="table-header">
+                    <h3>Найближчі події</h3>
+                </div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Дата</th>
+                            <th>Час</th>
+                            <th>Тип</th>
+                            <th>Маршрут/Транспорт</th>
+                            <th>Водій</th>
+                            <th>Статус</th>
+                            <th>Дії</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>15.01.2025</td>
+                            <td>14:00 - 18:00</td>
+                            <td><span class="status-badge status-active">ТО</span></td>
+                            <td>АК-1234</td>
+                            <td>-</td>
+                            <td><span class="status-badge status-active">Заплановано</span></td>
+                            <td>
+                                <button class="btn btn-sm btn-primary" onclick="viewEvent(1)">Переглянути</button>
+                                <button class="btn btn-sm btn-warning" onclick="editEvent(1)">Редагувати</button>
+                                <button class="btn btn-sm btn-danger" onclick="cancelEvent(1)">Скасувати</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>18.01.2025</td>
+                            <td>06:00 - 22:00</td>
+                            <td><span class="status-badge status-pending">Рейс</span></td>
+                            <td>№15 (АК-3456)</td>
+                            <td>Шевченко А.М.</td>
+                            <td><span class="status-badge status-active">Заплановано</span></td>
+                            <td>
+                                <button class="btn btn-sm btn-primary" onclick="viewEvent(2)">Переглянути</button>
+                                <button class="btn btn-sm btn-warning" onclick="editEvent(2)">Редагувати</button>
+                                <button class="btn btn-sm btn-danger" onclick="cancelEvent(2)">Скасувати</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>20.01.2025</td>
+                            <td>08:00 - 16:00</td>
+                            <td><span class="status-badge status-active">Рейс</span></td>
+                            <td>№12 (ТР-5678)</td>
+                            <td>Коваленко О.П.</td>
+                            <td><span class="status-badge status-active">Заплановано</span></td>
+                            <td>
+                                <button class="btn btn-sm btn-primary" onclick="viewEvent(3)">Переглянути</button>
+                                <button class="btn btn-sm btn-warning" onclick="editEvent(3)">Редагувати</button>
+                                <button class="btn btn-sm btn-danger" onclick="cancelEvent(3)">Скасувати</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>22.01.2025</td>
+                            <td>10:00 - 12:00</td>
+                            <td><span class="status-badge status-expired">Ремонт</span></td>
+                            <td>ТМ-9012</td>
+                            <td>-</td>
+                            <td><span class="status-badge status-pending">На розгляді</span></td>
+                            <td>
+                                <button class="btn btn-sm btn-primary" onclick="viewEvent(4)">Переглянути</button>
+                                <button class="btn btn-sm btn-warning" onclick="editEvent(4)">Редагувати</button>
+                                <button class="btn btn-sm btn-danger" onclick="cancelEvent(4)">Скасувати</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Schedule Statistics -->
+            <div class="table-container">
+                <div class="table-header">
+                    <h3>Статистика розкладу</h3>
+                </div>
+                <div style="padding: 1.5rem;">
+                    <div class="metrics-grid">
+                        <div class="metric-card">
+                            <div class="metric-icon">⏰</div>
+                            <div class="metric-content">
+                                <h3>16</h3>
+                                <p>Годин роботи/день</p>
+                            </div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-icon">📅</div>
+                            <div class="metric-content">
+                                <h3>7</h3>
+                                <p>Днів на тиждень</p>
+                            </div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-icon">✅</div>
+                            <div class="metric-content">
+                                <h3>98%</h3>
+                                <p>Дотримання розкладу</p>
+                            </div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-icon">📈</div>
+                            <div class="metric-content">
+                                <h3>1,245</h3>
+                                <p>Рейсів на день</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Add Event Modal -->
+    <div id="addEventModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Додати нову подію</h3>
+                <span class="close" onclick="closeAddEventModal()">&times;</span>
+            </div>
+            <form id="addEventForm">
+                <div class="form-group">
+                    <label class="form-label" for="eventType">Тип події</label>
+                    <select class="form-select" id="eventType" required>
+                        <option value="">Оберіть тип</option>
+                        <option value="training">Тренування</option>
+                        <option value="match">Матч</option>
+                        <option value="meeting">Зустріч</option>
+                        <option value="other">Інше</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="eventTitle">Назва події</label>
+                    <input type="text" class="form-input" id="eventTitle" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="eventDate">Дата</label>
+                    <input type="date" class="form-input" id="eventDate" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="eventStartTime">Час початку</label>
+                    <input type="time" class="form-input" id="eventStartTime" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="eventEndTime">Час закінчення</label>
+                    <input type="time" class="form-input" id="eventEndTime" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="eventParticipants">Учасники</label>
+                    <select class="form-select" id="eventParticipants" multiple>
+                        <option value="S1mple">S1mple</option>
+                        <option value="electronic">electronic</option>
+                        <option value="Boombl4">Boombl4</option>
+                        <option value="b1t">b1t</option>
+                        <option value="Perfecto">Perfecto</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="eventDescription">Опис</label>
+                    <textarea class="form-input" id="eventDescription" rows="3"></textarea>
+                </div>
+                <div style="display: flex; gap: 1rem; justify-content: flex-end; margin-top: 2rem;">
+                    <button type="button" class="btn" onclick="closeAddEventModal()" style="background: #6c757d; color: white;">Скасувати</button>
+                    <button type="submit" class="btn btn-primary">Додати подію</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Schedule-specific functions
+        function openAddEventModal() {
+            document.getElementById('addEventModal').style.display = 'block';
+        }
+
+        function closeAddEventModal() {
+            document.getElementById('addEventModal').style.display = 'none';
+            document.getElementById('addEventForm').reset();
+        }
+
+        function viewEvent(eventId) {
+            alert(`Перегляд події з ID: ${eventId}`);
+        }
+
+        function editEvent(eventId) {
+            alert(`Редагування події з ID: ${eventId}`);
+        }
+
+        function cancelEvent(eventId) {
+            if (confirm('Ви впевнені, що хочете скасувати цю подію?')) {
+                alert(`Подія з ID: ${eventId} скасована`);
+            }
+        }
+
+        function exportSchedule() {
+            alert('Розклад експортовано!');
+        }
+
+        // Form submission
+        document.addEventListener('DOMContentLoaded', function() {
+            const addEventForm = document.getElementById('addEventForm');
+            if (addEventForm) {
+                addEventForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    alert('Нова подія додана успішно!');
+                    closeAddEventModal();
+                });
+            }
+        });
+    </script>
+</body>
+</html>

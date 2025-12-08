@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Звіти по паливу - КП "TroyBus"</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <h1>КП "TroyBus"</h1>
+                <p>Система управління дорожніми листами</p>
+            </div>
+            <nav class="nav">
+                <a href="daily-schedule.html" class="nav-link">Розклад</a>
+                <a href="waybill-form.html" class="nav-link">Дорожній лист</a>
+                <a href="waybill-view.html" class="nav-link">Перегляд листів</a>
+                <a href="fuel-report.html" class="nav-link active">Звіти</a>
+            </nav>
+            <div class="user-info">
+                <span id="userRoleDisplay">Диспетчер</span>
+                <button class="logout-btn" onclick="location.href='login.html'">Вийти</button>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Fuel Report Form -->
+            <div class="form-container">
+                <div class="form-header">
+                    <h2>Форма замовлення звітів по паливу</h2>
+                    <p>Інтерфейс для замовлення звітів по паливу (FuelReportForm)</p>
+                </div>
+                
+                <form id="fuelReportForm" class="report-form">
+                    <!-- Параметри звіту -->
+                    <div class="form-section">
+                        <h3>Параметри звіту</h3>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label" for="reportType">Тип звіту</label>
+                                <select class="form-select" id="reportType" required>
+                                    <option value="">Оберіть тип звіту</option>
+                                    <option value="daily">Щоденний звіт</option>
+                                    <option value="weekly">Тижневий звіт</option>
+                                    <option value="monthly">Місячний звіт</option>
+                                    <option value="custom">За період</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label" for="reportDate">Дата звіту</label>
+                                <input type="date" class="form-input" id="reportDate" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row" id="dateRangeRow" style="display: none;">
+                            <div class="form-group">
+                                <label class="form-label" for="dateFrom">Дата від</label>
+                                <input type="date" class="form-input" id="dateFrom">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label" for="dateTo">Дата до</label>
+                                <input type="date" class="form-input" id="dateTo">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Фільтри -->
+                    <div class="form-section">
+                        <h3>Фільтри</h3>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label" for="filterRoute">Маршрут</label>
+                                <select class="form-select" id="filterRoute">
+                                    <option value="">Всі маршрути</option>
+                                    <option value="12">№12 - Центр - Південний</option>
+                                    <option value="15">№15 - Вокзал - Аеропорт</option>
+                                    <option value="8">№8 - Північний - Західний</option>
+                                    <option value="25">№25 - Східний - Центр</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label" for="filterVehicle">Транспортний засіб</label>
+                                <select class="form-select" id="filterVehicle">
+                                    <option value="">Всі транспортні засоби</option>
+                                    <option value="AK-1234">АК-1234</option>
+                                    <option value="TR-5678">ТР-5678</option>
+                                    <option value="TM-9012">ТМ-9012</option>
+                                    <option value="AK-3456">АК-3456</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label" for="filterDriver">Водій</label>
+                                <select class="form-select" id="filterDriver">
+                                    <option value="">Всі водії</option>
+                                    <option value="1">Петренко І.В.</option>
+                                    <option value="2">Коваленко О.П.</option>
+                                    <option value="3">Мельник С.І.</option>
+                                    <option value="4">Шевченко А.М.</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label" for="filterStatus">Статус дорожнього листа</label>
+                                <select class="form-select" id="filterStatus">
+                                    <option value="">Всі статуси</option>
+                                    <option value="active">Активний</option>
+                                    <option value="completed">Завершено</option>
+                                    <option value="draft">Чернетка</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Формат звіту -->
+                    <div class="form-section">
+                        <h3>Формат звіту</h3>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label">Формат експорту</label>
+                                <div style="display: flex; gap: 1rem; margin-top: 0.5rem;">
+                                    <label style="display: flex; align-items: center; gap: 0.5rem;">
+                                        <input type="radio" name="exportFormat" value="pdf" checked>
+                                        <span>PDF</span>
+                                    </label>
+                                    <label style="display: flex; align-items: center; gap: 0.5rem;">
+                                        <input type="radio" name="exportFormat" value="excel">
+                                        <span>Excel</span>
+                                    </label>
+                                    <label style="display: flex; align-items: center; gap: 0.5rem;">
+                                        <input type="radio" name="exportFormat" value="csv">
+                                        <span>CSV</span>
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label" for="reportGrouping">Групування даних</label>
+                                <select class="form-select" id="reportGrouping">
+                                    <option value="none">Без групування</option>
+                                    <option value="route">За маршрутом</option>
+                                    <option value="vehicle">За транспортом</option>
+                                    <option value="driver">За водієм</option>
+                                    <option value="date">За датою</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Дії -->
+                    <div class="form-actions">
+                        <button type="button" class="btn" onclick="location.href='daily-schedule.html'" style="background: #6c757d; color: white;">Скасувати</button>
+                        <button type="button" class="btn btn-secondary" onclick="previewReport()">Попередній перегляд</button>
+                        <button type="submit" class="btn btn-primary">Згенерувати звіт</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Report Preview/Results -->
+            <div class="table-container" id="reportResults" style="display: none;">
+                <div class="table-header">
+                    <h3>Попередній перегляд звіту</h3>
+                </div>
+                <div style="padding: 1.5rem;">
+                    <div class="metrics-grid">
+                        <div class="metric-card">
+                            <div class="metric-icon">⛽</div>
+                            <div class="metric-content">
+                                <h3>1,245</h3>
+                                <p>Літрів витрачено</p>
+                            </div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-icon">📊</div>
+                            <div class="metric-content">
+                                <h3>28.5</h3>
+                                <p>Середня витрата (л/100км)</p>
+                            </div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-icon">🚌</div>
+                            <div class="metric-content">
+                                <h3>24</h3>
+                                <p>Дорожніх листів</p>
+                            </div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-icon">💰</div>
+                            <div class="metric-content">
+                                <h3>₴45,620</h3>
+                                <p>Вартість палива</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: 2rem;">
+                        <h4>Детальна таблиця</h4>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Дата</th>
+                                    <th>Маршрут</th>
+                                    <th>Транспорт</th>
+                                    <th>Водій</th>
+                                    <th>Рівень палива (л)</th>
+                                    <th>Витрата (л)</th>
+                                    <th>Пробіг (км)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>15.01.2025</td>
+                                    <td>№12</td>
+                                    <td>АК-1234</td>
+                                    <td>Петренко І.В.</td>
+                                    <td>50.0 → 25.5</td>
+                                    <td>24.5</td>
+                                    <td>245</td>
+                                </tr>
+                                <tr>
+                                    <td>15.01.2025</td>
+                                    <td>№15</td>
+                                    <td>ТР-5678</td>
+                                    <td>Коваленко О.П.</td>
+                                    <td>60.0 → 38.2</td>
+                                    <td>21.8</td>
+                                    <td>220</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Показ/приховування діапазону дат
+        document.getElementById('reportType').addEventListener('change', function() {
+            const dateRangeRow = document.getElementById('dateRangeRow');
+            if (this.value === 'custom') {
+                dateRangeRow.style.display = 'flex';
+            } else {
+                dateRangeRow.style.display = 'none';
+            }
+        });
+        
+        // Обробка форми
+        document.getElementById('fuelReportForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Звіт по паливу згенеровано! Файл буде завантажено автоматично.');
+            document.getElementById('reportResults').style.display = 'block';
+        });
+        
+        function previewReport() {
+            document.getElementById('reportResults').style.display = 'block';
+        }
+    </script>
+</body>
+</html>

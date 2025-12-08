@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Аналітика - Міський транспорт</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <h1>Система управління міським транспортом</h1>
+                <p>Управління транспортом, маршрутами та водіями</p>
+            </div>
+            <nav class="nav">
+                <a href="index.html" class="nav-link">Головна</a>
+                <a href="vehicles.html" class="nav-link">Транспорт</a>
+                <a href="routes.html" class="nav-link">Маршрути</a>
+                <a href="drivers.html" class="nav-link">Водії</a>
+                <a href="schedule.html" class="nav-link">Розклад</a>
+                <a href="analytics.html" class="nav-link active">Аналітика</a>
+            </nav>
+            <div class="user-info">
+                <span>Диспетчер</span>
+                <button class="logout-btn">Вийти</button>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Analytics Dashboard -->
+            <div class="dashboard">
+                <h2>Аналітика та звітність</h2>
+                
+                <!-- Key Performance Indicators -->
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <div class="metric-icon">🚌</div>
+                        <div class="metric-content">
+                            <h3>156</h3>
+                            <p>Активний транспорт</p>
+                        </div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-icon">🛣️</div>
+                        <div class="metric-content">
+                            <h3>42</h3>
+                            <p>Активні маршрути</p>
+                        </div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-icon">👥</div>
+                        <div class="metric-content">
+                            <h3>245K</h3>
+                            <p>Пасажирів на день</p>
+                        </div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-icon">✅</div>
+                        <div class="metric-content">
+                            <h3>98%</h3>
+                            <p>Дотримання розкладу</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Route Performance Chart -->
+                <div class="table-container">
+                    <div class="table-header">
+                        <h3>Завантаженість маршрутів</h3>
+                        <div class="search-box">
+                            <select class="form-select" style="width: 200px;">
+                                <option value="passengers">Пасажиропотік</option>
+                                <option value="punctuality">Пунктуальність</option>
+                                <option value="efficiency">Ефективність</option>
+                                <option value="revenue">Доходи</option>
+                            </select>
+                            <button class="btn btn-primary" onclick="generateReport()">Згенерувати звіт</button>
+                        </div>
+                    </div>
+                    <div style="padding: 1.5rem;">
+                        <div style="background: #f8f9fa; padding: 2rem; border-radius: 10px; text-align: center;">
+                            <h4>Графік завантаженості маршрутів</h4>
+                            <div style="height: 300px; background: white; border: 1px solid #ddd; border-radius: 5px; display: flex; align-items: center; justify-content: center; margin-top: 1rem;">
+                                <div style="text-align: center;">
+                                    <div style="font-size: 3rem; color: #667eea;">📈</div>
+                                    <p>Тут буде інтерактивний графік</p>
+                                    <p style="color: #7f8c8d; font-size: 0.9rem;">№3: 15,600 пас/день | №15: 12,300 пас/день | №12: 8,450 пас/день</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Route Statistics -->
+                <div class="table-container">
+                    <div class="table-header">
+                        <h3>Статистика маршрутів</h3>
+                    </div>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Дата</th>
+                                <th>Маршрут</th>
+                                <th>Пасажиропотік</th>
+                                <th>Пунктуальність</th>
+                                <th>Транспорт</th>
+                                <th>Водій</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>15.01.2025</td>
+                                <td>№3</td>
+                                <td><span class="status-badge status-active">15,600</span></td>
+                                <td>98%</td>
+                                <td>ТР-7890</td>
+                                <td>Бондаренко В.О.</td>
+                            </tr>
+                            <tr>
+                                <td>12.01.2025</td>
+                                <td>№15</td>
+                                <td><span class="status-badge status-active">12,300</span></td>
+                                <td>97%</td>
+                                <td>ТР-5678</td>
+                                <td>Коваленко О.П.</td>
+                            </tr>
+                            <tr>
+                                <td>08.01.2025</td>
+                                <td>№12</td>
+                                <td><span class="status-badge status-pending">8,450</span></td>
+                                <td>95%</td>
+                                <td>АК-1234</td>
+                                <td>Петренко І.В.</td>
+                            </tr>
+                            <tr>
+                                <td>05.01.2025</td>
+                                <td>№25</td>
+                                <td><span class="status-badge status-active">9,800</span></td>
+                                <td>99%</td>
+                                <td>АК-3456</td>
+                                <td>Шевченко А.М.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Vehicle Analytics -->
+                <div class="table-container">
+                    <div class="table-header">
+                        <h3>Аналітика транспорту</h3>
+                    </div>
+                    <div style="padding: 1.5rem;">
+                        <div class="metrics-grid">
+                            <div class="metric-card">
+                                <div class="metric-icon">⏰</div>
+                                <div class="metric-content">
+                                    <h3>16</h3>
+                                    <p>Годин роботи/день</p>
+                                </div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-icon">📅</div>
+                                <div class="metric-content">
+                                    <h3>7</h3>
+                                    <p>Днів на тиждень</p>
+                                </div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-icon">✅</div>
+                                <div class="metric-content">
+                                    <h3>98%</h3>
+                                    <p>Дотримання розкладу</p>
+                                </div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-icon">📈</div>
+                                <div class="metric-content">
+                                    <h3>+5%</h3>
+                                    <p>Зростання за місяць</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Financial Reports -->
+                <div class="table-container">
+                    <div class="table-header">
+                        <h3>Фінансові звіти</h3>
+                        <div class="search-box">
+                            <button class="btn btn-success" onclick="exportFinancialReport()">Експорт Excel</button>
+                            <button class="btn btn-primary" onclick="generateFinancialReport()">Згенерувати PDF</button>
+                        </div>
+                    </div>
+                    <div style="padding: 1.5rem;">
+                        <div style="background: #f8f9fa; padding: 2rem; border-radius: 10px;">
+                            <h4>Звіт за січень 2025</h4>
+                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 1rem;">
+                                <div style="background: white; padding: 1rem; border-radius: 5px; border: 1px solid #ddd;">
+                                    <h5>Доходи</h5>
+                                    <p style="font-size: 1.5rem; color: #27ae60; font-weight: bold;">₴2,450,000</p>
+                                </div>
+                                <div style="background: white; padding: 1rem; border-radius: 5px; border: 1px solid #ddd;">
+                                    <h5>Витрати на паливо</h5>
+                                    <p style="font-size: 1.5rem; color: #e74c3c; font-weight: bold;">₴850,000</p>
+                                </div>
+                                <div style="background: white; padding: 1rem; border-radius: 5px; border: 1px solid #ddd;">
+                                    <h5>Інші витрати</h5>
+                                    <p style="font-size: 1.5rem; color: #e74c3c; font-weight: bold;">₴420,000</p>
+                                </div>
+                                <div style="background: white; padding: 1rem; border-radius: 5px; border: 1px solid #ddd;">
+                                    <h5>Чистий прибуток</h5>
+                                    <p style="font-size: 1.5rem; color: #27ae60; font-weight: bold;">₴1,180,000</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Export Options -->
+                <div class="table-container">
+                    <div class="table-header">
+                        <h3>Експорт даних</h3>
+                    </div>
+                    <div style="padding: 1.5rem;">
+                        <div class="action-buttons">
+                            <button class="action-btn" onclick="exportVehiclesCSV()">
+                                <span class="btn-icon">📊</span>
+                                Експорт транспорту (CSV)
+                            </button>
+                            <button class="action-btn" onclick="exportRoutesJSON()">
+                                <span class="btn-icon">📄</span>
+                                Експорт маршрутів (JSON)
+                            </button>
+                            <button class="action-btn" onclick="exportAnalyticsExcel()">
+                                <span class="btn-icon">📈</span>
+                                Експорт аналітики (Excel)
+                            </button>
+                            <button class="action-btn" onclick="generateFullReport()">
+                                <span class="btn-icon">📋</span>
+                                Повний звіт (PDF)
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

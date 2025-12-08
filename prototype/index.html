@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>КП "TroyBus" - Система управління дорожніми листами</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <h1>КП "TroyBus"</h1>
+                <p>Система управління дорожніми листами</p>
+            </div>
+            <nav class="nav">
+                <a href="daily-schedule.html" class="nav-link">Розклад</a>
+                <a href="waybill-form.html" class="nav-link">Дорожній лист</a>
+                <a href="waybill-view.html" class="nav-link">Перегляд листів</a>
+                <a href="fuel-report.html" class="nav-link">Звіти</a>
+            </nav>
+            <div class="user-info">
+                <span>Диспетчер</span>
+                <button class="logout-btn" onclick="location.href='login.html'">Вийти</button>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="dashboard">
+                <h2>Головна панель</h2>
+                
+                <!-- Key Metrics Cards -->
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <div class="metric-icon">📄</div>
+                        <div class="metric-content">
+                            <h3>24</h3>
+                            <p>Активних дорожніх листів</p>
+                        </div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-icon">🛣️</div>
+                        <div class="metric-content">
+                            <h3>42</h3>
+                            <p>Активних графіків маршрутів</p>
+                        </div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-icon">⛽</div>
+                        <div class="metric-content">
+                            <h3>1,245</h3>
+                            <p>Літрів витрачено сьогодні</p>
+                        </div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-icon">✅</div>
+                        <div class="metric-content">
+                            <h3>98%</h3>
+                            <p>Дотримання розкладу</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Actions -->
+                <div class="quick-actions">
+                    <h3>Швидкі дії</h3>
+                    <div class="action-buttons">
+                        <button class="action-btn" onclick="location.href='daily-schedule.html'">
+                            <span class="btn-icon">📅</span>
+                            Розклад руху
+                        </button>
+                        <button class="action-btn" onclick="location.href='waybill-form.html'">
+                            <span class="btn-icon">📝</span>
+                            Створити дорожній лист
+                        </button>
+                        <button class="action-btn" onclick="location.href='waybill-view.html'">
+                            <span class="btn-icon">👁️</span>
+                            Перегляд листів
+                        </button>
+                        <button class="action-btn" onclick="location.href='fuel-report.html'">
+                            <span class="btn-icon">📊</span>
+                            Звіти по паливу
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Recent Activity -->
+                <div class="recent-activity">
+                    <h3>Остання активність</h3>
+                    <div class="activity-list">
+                        <div class="activity-item">
+                            <div class="activity-icon">📄</div>
+                            <div class="activity-content">
+                                <p><strong>Дорожній лист створено:</strong> WB-2025-001 (№12)</p>
+                                <span class="activity-time">2 години тому</span>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon">🛣️</div>
+                            <div class="activity-content">
+                                <p><strong>Графік оновлено:</strong> RouteSchedule RS001 (№12)</p>
+                                <span class="activity-time">4 години тому</span>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon">⛽</div>
+                            <div class="activity-content">
+                                <p><strong>Звіт по паливу:</strong> Згенеровано за 15.01.2025</p>
+                                <span class="activity-time">6 годин тому</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Upcoming Events -->
+                <div class="upcoming-events">
+                    <h3>Найближчі події</h3>
+                    <div class="events-list">
+                        <div class="event-item">
+                            <div class="event-date">
+                                <span class="day">15</span>
+                                <span class="month">Січ</span>
+                            </div>
+                            <div class="event-content">
+                                <p><strong>Технічне обслуговування</strong></p>
+                                <p>Автобус №АК-1234</p>
+                            </div>
+                        </div>
+                        <div class="event-item">
+                            <div class="event-date">
+                                <span class="day">18</span>
+                                <span class="month">Січ</span>
+                            </div>
+                            <div class="event-content">
+                                <p><strong>Оновлення графіку</strong></p>
+                                <p>RouteSchedule RS002</p>
+                            </div>
+                        </div>
+                        <div class="event-item">
+                            <div class="event-date">
+                                <span class="day">22</span>
+                                <span class="month">Січ</span>
+                            </div>
+                            <div class="event-content">
+                                <p><strong>Закінчення дозволу</strong></p>
+                                <p>Водій Петренко І.В.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
