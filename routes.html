@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Управління маршрутами - Міський транспорт</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <h1>Система управління міським транспортом</h1>
+                <p>Управління транспортом, маршрутами та водіями</p>
+            </div>
+            <nav class="nav">
+                <a href="index.html" class="nav-link">Головна</a>
+                <a href="vehicles.html" class="nav-link">Транспорт</a>
+                <a href="routes.html" class="nav-link active">Маршрути</a>
+                <a href="drivers.html" class="nav-link">Водії</a>
+                <a href="schedule.html" class="nav-link">Розклад</a>
+                <a href="analytics.html" class="nav-link">Аналітика</a>
+            </nav>
+            <div class="user-info">
+                <span>Диспетчер</span>
+                <button class="logout-btn">Вийти</button>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="table-container">
+                <div class="table-header">
+                    <h3>Управління маршрутами</h3>
+                    <div class="search-box">
+                        <input type="text" class="search-input" placeholder="Пошук маршрутів..." id="routeSearch">
+                        <button class="search-btn" onclick="searchRoutes()">Пошук</button>
+                        <button class="btn btn-primary" onclick="openAddRouteModal()">Створити маршрут</button>
+                    </div>
+                </div>
+                
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Номер</th>
+                            <th>Назва</th>
+                            <th>Тип транспорту</th>
+                            <th>Довжина (км)</th>
+                            <th>Кількість зупинок</th>
+                            <th>Пасажиропотік</th>
+                            <th>Статус</th>
+                            <th>Дії</th>
+                        </tr>
+                    </thead>
+                    <tbody id="routesTable">
+                        <tr>
+                            <td>RT001</td>
+                            <td>№12</td>
+                            <td>Центр - Південний</td>
+                            <td>Автобус</td>
+                            <td>18.5</td>
+                            <td>24</td>
+                            <td>8,450/день</td>
+                            <td><span class="status-badge status-active">Активний</span></td>
+                            <td>
+                                <button class="btn btn-sm btn-primary" onclick="viewRoute(1)">Переглянути</button>
+                                <button class="btn btn-sm btn-warning" onclick="editRoute(1)">Редагувати</button>
+                                <button class="btn btn-sm btn-success" onclick="optimizeRoute(1)">Оптимізувати</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>RT002</td>
+                            <td>№15</td>
+                            <td>Вокзал - Аеропорт</td>
+                            <td>Тролейбус</td>
+                            <td>22.3</td>
+                            <td>18</td>
+                            <td>12,300/день</td>
+                            <td><span class="status-badge status-active">Активний</span></td>
+                            <td>
+                                <button class="btn btn-sm btn-primary" onclick="viewRoute(1)">Переглянути</button>
+                                <button class="btn btn-sm btn-warning" onclick="editRoute(2)">Редагувати</button>
+                                <button class="btn btn-sm btn-success" onclick="optimizeRoute(2)">Оптимізувати</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>RT003</td>
+                            <td>№8</td>
+                            <td>Північний - Західний</td>
+                            <td>Трамвай</td>
+                            <td>15.7</td>
+                            <td>20</td>
+                            <td>6,200/день</td>
+                            <td><span class="status-badge status-pending">На оновленні</span></td>
+                            <td>
+                                <button class="btn btn-sm btn-primary" onclick="viewRoute(3)">Переглянути</button>
+                                <button class="btn btn-sm btn-warning" onclick="editRoute(3)">Редагувати</button>
+                                <button class="btn btn-sm btn-success" onclick="optimizeRoute(3)">Оптимізувати</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>RT004</td>
+                            <td>№25</td>
+                            <td>Східний - Центр</td>
+                            <td>Автобус</td>
+                            <td>20.1</td>
+                            <td>22</td>
+                            <td>9,800/день</td>
+                            <td><span class="status-badge status-active">Активний</span></td>
+                            <td>
+                                <button class="btn btn-sm btn-primary" onclick="viewRoute(4)">Переглянути</button>
+                                <button class="btn btn-sm btn-warning" onclick="editRoute(4)">Редагувати</button>
+                                <button class="btn btn-sm btn-success" onclick="optimizeRoute(4)">Оптимізувати</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>RT005</td>
+                            <td>№3</td>
+                            <td>Південний - Північний</td>
+                            <td>Тролейбус</td>
+                            <td>25.4</td>
+                            <td>28</td>
+                            <td>15,600/день</td>
+                            <td><span class="status-badge status-active">Активний</span></td>
+                            <td>
+                                <button class="btn btn-sm btn-primary" onclick="viewRoute(5)">Переглянути</button>
+                                <button class="btn btn-sm btn-warning" onclick="editRoute(5)">Редагувати</button>
+                                <button class="btn btn-sm btn-success" onclick="optimizeRoute(5)">Оптимізувати</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Route Statistics -->
+            <div class="table-container">
+                <div class="table-header">
+                    <h3>Статистика маршрутів</h3>
+                </div>
+                <div style="padding: 1.5rem;">
+                    <div class="metrics-grid">
+                        <div class="metric-card">
+                            <div class="metric-icon">🛣️</div>
+                            <div class="metric-content">
+                                <h3>42</h3>
+                                <p>Активні маршрути</p>
+                            </div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-icon">👥</div>
+                            <div class="metric-content">
+                                <h3>245K</h3>
+                                <p>Пасажирів на день</p>
+                            </div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-icon">⏱️</div>
+                            <div class="metric-content">
+                                <h3>98%</h3>
+                                <p>Дотримання розкладу</p>
+                            </div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-icon">📊</div>
+                            <div class="metric-content">
+                                <h3>19.2</h3>
+                                <p>Середня довжина (км)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Popular Routes -->
+            <div class="table-container">
+                <div class="table-header">
+                    <h3>Найпопулярніші маршрути</h3>
+                </div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Маршрут</th>
+                            <th>Пасажиропотік</th>
+                            <th>Завантаженість</th>
+                            <th>Дії</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>№3 (Південний - Північний)</td>
+                            <td>15,600/день</td>
+                            <td>95%</td>
+                            <td>
+                                <button class="btn btn-sm btn-success" onclick="optimizeRoute(5)">Оптимізувати</button>
+                                <button class="btn btn-sm btn-warning" onclick="editRoute(5)">Редагувати</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>№15 (Вокзал - Аеропорт)</td>
+                            <td>12,300/день</td>
+                            <td>88%</td>
+                            <td>
+                                <button class="btn btn-sm btn-success" onclick="optimizeRoute(2)">Оптимізувати</button>
+                                <button class="btn btn-sm btn-warning" onclick="editRoute(2)">Редагувати</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+
+    <!-- Add Route Modal -->
+    <div id="addRouteModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Створити новий маршрут</h3>
+                <span class="close" onclick="closeAddRouteModal()">&times;</span>
+            </div>
+            <form id="addRouteForm">
+                <div class="form-group">
+                    <label class="form-label" for="routeNumber">Номер маршруту</label>
+                    <input type="text" class="form-input" id="routeNumber" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="routeName">Назва маршруту</label>
+                    <input type="text" class="form-input" id="routeName" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="routeType">Тип транспорту</label>
+                    <select class="form-select" id="routeType" required>
+                        <option value="">Оберіть тип</option>
+                        <option value="Автобус">Автобус</option>
+                        <option value="Тролейбус">Тролейбус</option>
+                        <option value="Трамвай">Трамвай</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="routeLength">Довжина маршруту (км)</label>
+                    <input type="number" class="form-input" id="routeLength" step="0.1" min="0" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="routeStops">Кількість зупинок</label>
+                    <input type="number" class="form-input" id="routeStops" min="1" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="routeDescription">Опис маршруту</label>
+                    <textarea class="form-input" id="routeDescription" rows="3" placeholder="Опишіть маршрут та зупинки..."></textarea>
+                </div>
+                <div style="display: flex; gap: 1rem; justify-content: flex-end; margin-top: 2rem;">
+                    <button type="button" class="btn" onclick="closeAddRouteModal()" style="background: #6c757d; color: white;">Скасувати</button>
+                    <button type="submit" class="btn btn-primary">Створити маршрут</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- View Route Modal -->
+    <div id="viewRouteModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Деталі маршруту</h3>
+                <span class="close" onclick="closeViewRouteModal()">&times;</span>
+            </div>
+            <div id="routeDetails">
+                <!-- Route details will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
